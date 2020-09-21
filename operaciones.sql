@@ -34,10 +34,22 @@ INSERT INTO post(id, usuario, fecha_creacion, contenido, descripcion, titulo) VA
 -- 9. Crear una nueva tabla, llamada comentarios, con los atributos id, fecha y hora de creación,
 -- contenido, que se relacione con la tabla posts.
 ALTER TABLE post ADD PRIMARY KEY (id);
-CREATE TABLE comentarios(id INT, fecha_creacion TIMESTAMP, contenido VARCHAR(80), id_post INT, FOREIGN KEY (id_post) REFERENCES post(id));
+CREATE TABLE comentarios(id SERIAL, fecha_creacion TIMESTAMP, contenido VARCHAR(80), id_post INT, FOREIGN KEY (id_post) REFERENCES post(id));
 
 -- 10. Crear 2 comentarios para el post de "Pamela" y 4 para "Carlos" 
 INSERT INTO comentarios(fecha_creacion, contenido, id_post) VALUES(current_timestamp, 'Contenido 1 Pamela', 1);
 INSERT INTO comentarios(fecha_creacion, contenido, id_post) VALUES(current_timestamp, 'Contenido 2 Pamela', 2);
 INSERT INTO comentarios(fecha_creacion, contenido, id_post) VALUES(current_timestamp, 'Contenido 1 Carlos', 6);
+
+-- 11. Crear un nuevo post para "Margarita" 
+INSERT INTO post(id, usuario, fecha_creacion, contenido, descripcion, titulo) VALUES (7, 'Margarita', current_timestamp, 'contenido 1', 'descripcion 1', 'titulo 1');
+
+-- 12. Ingresar 5 comentarios para el post de Margarita
+INSERT INTO comentarios(fecha_creacion, contenido, id_post) VALUES(current_timestamp, 'Contenido 1 Margarita', 7);
+INSERT INTO comentarios(fecha_creacion, contenido, id_post) VALUES(current_timestamp, 'Contenido 2 Margarita', 7);
+INSERT INTO comentarios(fecha_creacion, contenido, id_post) VALUES(current_timestamp, 'Contenido 3 Margarita', 7);
+INSERT INTO comentarios(fecha_creacion, contenido, id_post) VALUES(current_timestamp, 'Contenido 4 Margarita', 7);
+INSERT INTO comentarios(fecha_creacion, contenido, id_post) VALUES(current_timestamp, 'Contenido 5 Margarita', 7);
+
+
 
